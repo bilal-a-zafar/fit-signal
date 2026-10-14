@@ -1,0 +1,367 @@
+<title>Fit Signal</title>
+<meta name="description" content="What Huckberry's own reviews reveal about how its jackets fit, across brands and body types.">
+<style>
+/* Layout: a field report — stacked full-width sections, one reading column, data set in mono.
+   Color: waxed-canvas neutrals + olive accent; amber/steel reserved as semantic fit signals.
+   Type: Oswald (condensed labels/headings) · Source Serif 4 (body) · IBM Plex Mono (data). */
+:root{
+  --paper:#EBE5D7; --panel:#F4EFE4; --panel2:#E4DDCB;
+  --ink:#201D16; --muted:#6C6453; --faint:#8C8472; --line:#D5CCB8;
+  --olive:#56643F; --olive2:#6E7D50;
+  --small:#B4652A;   /* runs small */
+  --large:#3C6A86;   /* runs large */
+  --true:#8A8A62;    /* true to size */
+  --shadow:0 1px 0 rgba(0,0,0,.04),0 10px 30px -18px rgba(40,34,20,.35);
+  --disp:"Oswald",system-ui,sans-serif;
+  --body:"Source Serif 4",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#161410; --panel:#1E1B15; --panel2:#262118;
+  --ink:#ECE6D7; --muted:#9A9078; --faint:#7E755F; --line:#332E22;
+  --olive:#9AAA79; --olive2:#B3C290;
+  --small:#D58B4D; --large:#73A6C4; --true:#A7A77E;
+  --shadow:0 1px 0 rgba(0,0,0,.2),0 14px 34px -20px rgba(0,0,0,.7);
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --paper:#161410; --panel:#1E1B15; --panel2:#262118;
+  --ink:#ECE6D7; --muted:#9A9078; --faint:#7E755F; --line:#332E22;
+  --olive:#9AAA79; --olive2:#B3C290;
+  --small:#D58B4D; --large:#73A6C4; --true:#A7A77E;
+  --shadow:0 1px 0 rgba(0,0,0,.2),0 14px 34px -20px rgba(0,0,0,.7);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);line-height:1.6;
+  -webkit-font-smoothing:antialiased;font-size:17px}
+.wrap{max-width:860px;margin:0 auto;padding-inline:20px}
+h1,h2,h3,.disp{font-family:var(--disp);font-weight:500;line-height:1.08;text-wrap:balance;letter-spacing:.01em}
+.eyebrow{font-family:var(--disp);text-transform:uppercase;letter-spacing:.18em;font-weight:500;
+  font-size:12.5px;color:var(--olive)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--olive);text-decoration-thickness:1px;text-underline-offset:2px}
+
+/* header */
+header.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:14px;padding-block:11px}
+.brandmark{font-family:var(--disp);text-transform:uppercase;letter-spacing:.14em;font-weight:600;font-size:14px}
+.brandmark small{display:block;font-size:10.5px;letter-spacing:.22em;color:var(--muted);font-weight:400}
+.bar .sp{flex:1}
+.tbtn{font-family:var(--mono);font-size:12px;color:var(--muted);background:transparent;border:1px solid var(--line);
+  border-radius:999px;padding:5px 11px;cursor:pointer}
+.tbtn:hover{color:var(--ink);border-color:var(--muted)}
+
+section{padding-block:clamp(44px,7vw,76px);border-bottom:1px solid var(--line)}
+.lead{font-size:clamp(28px,5.4vw,46px);margin:.1em 0 .35em}
+.sub{font-size:19px;color:var(--muted);max-width:60ch}
+.k{font-size:13.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-family:var(--disp)}
+p{max-width:65ch}
+.hl{color:var(--small);font-weight:600}
+.hl2{color:var(--olive);font-weight:600}
+
+.prov{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.pill{font-family:var(--mono);font-size:12px;color:var(--muted);border:1px solid var(--line);
+  background:var(--panel);border-radius:6px;padding:7px 11px}
+.pill b{color:var(--ink);font-weight:600}
+
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 16px 14px;box-shadow:var(--shadow)}
+.tile .n{font-family:var(--mono);font-size:30px;font-weight:600;letter-spacing:-.02em}
+.tile .n small{font-size:15px;color:var(--muted);font-weight:400}
+.tile .l{font-size:13px;color:var(--muted);margin-top:3px;line-height:1.35}
+
+h2.sec{font-size:clamp(23px,4vw,32px);margin:0 0 6px}
+.sec-k{margin-bottom:18px}
+.note{font-size:14.5px;color:var(--muted)}
+.callout{background:var(--panel);border-left:3px solid var(--small);border-radius:0 10px 10px 0;
+  padding:16px 18px;margin:22px 0;font-size:16px}
+.callout b{color:var(--ink)}
+
+/* charts */
+.chart{margin:22px 0 6px}
+.row{display:grid;grid-template-columns:118px 1fr auto;align-items:center;gap:12px;padding:7px 0}
+.row .rl{font-family:var(--disp);font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink)}
+.track{position:relative;height:26px;background:var(--panel2);border-radius:5px;overflow:hidden}
+.fill{position:absolute;inset:0 auto 0 0;border-radius:5px}
+.rv{font-family:var(--mono);font-size:13.5px;white-space:nowrap;color:var(--muted)}
+.rv b{color:var(--ink);font-weight:600}
+.whisk{position:absolute;top:50%;height:2px;background:color-mix(in srgb,var(--ink) 55%,transparent)}
+.whisk::before,.whisk::after{content:"";position:absolute;top:-4px;height:10px;width:2px;background:inherit}
+.whisk::before{left:0}.whisk::after{right:0}
+.scale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--faint);
+  border-top:1px solid var(--line);margin-top:8px;padding-top:5px}
+
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--muted);margin-top:14px}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.sw{width:12px;height:12px;border-radius:3px;display:inline-block}
+
+/* recommender */
+.rec{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);
+  overflow:hidden;margin-top:24px}
+.rec-top{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--line)}
+.field{padding:16px 18px}
+.field+.field{border-left:1px solid var(--line)}
+.field label{display:block;font-family:var(--disp);text-transform:uppercase;letter-spacing:.1em;
+  font-size:12px;color:var(--muted);margin-bottom:7px}
+.field select{width:100%;font-family:var(--mono);font-size:15px;color:var(--ink);background:var(--panel2);
+  border:1px solid var(--line);border-radius:8px;padding:10px 12px;cursor:pointer;appearance:none}
+.rec-out{padding:20px 18px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+.sizebox{text-align:center;min-width:112px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px 8px}
+.sizebox .sz{font-family:var(--disp);font-weight:600;font-size:46px;line-height:1;color:var(--olive)}
+.sizebox .szl{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-top:5px;font-family:var(--disp)}
+.rec-detail .rd1{font-size:16px}
+.rec-detail .rd1 b{font-weight:600}
+.distbar{display:flex;height:22px;border-radius:5px;overflow:hidden;margin-top:12px;border:1px solid var(--line)}
+.distbar i{display:block;height:100%}
+.distkey{display:flex;flex-wrap:wrap;gap:12px;margin-top:9px;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.distkey span{display:inline-flex;gap:5px;align-items:center}
+.distkey i{width:9px;height:9px;border-radius:2px;display:inline-block}
+.rec-foot{padding:11px 18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint);
+  font-family:var(--mono)}
+.badge{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--olive);
+  border:1px solid color-mix(in srgb,var(--olive) 45%,var(--line));border-radius:5px;padding:2px 7px;
+  background:color-mix(in srgb,var(--olive) 10%,transparent)}
+.thin{color:var(--small)}
+
+/* validation segmented bar */
+.segbar{display:flex;height:40px;border-radius:7px;overflow:hidden;border:1px solid var(--line);margin:18px 0 0}
+.segbar i{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;color:#fff;
+  padding:0 6px;overflow:hidden;white-space:nowrap}
+.vstats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.vstat{border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:15px}
+.vstat .n{font-family:var(--mono);font-size:26px;font-weight:600}
+.vstat .l{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.35}
+
+ul.clean{list-style:none;padding:0;margin:14px 0;max-width:65ch}
+ul.clean li{position:relative;padding-left:20px;margin:9px 0}
+ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:7px;height:7px;background:var(--olive);border-radius:2px;transform:rotate(45deg)}
+
+footer{padding-block:34px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;flex-direction:column;gap:6px}
+.credit{font-family:var(--disp);text-transform:uppercase;letter-spacing:.12em;font-size:12px;color:var(--faint)}
+
+@media (max-width:620px){
+  .tiles{grid-template-columns:1fr 1fr}
+  .vstats{grid-template-columns:1fr}
+  .rec-top{grid-template-columns:1fr}
+  .field+.field{border-left:none;border-top:1px solid var(--line)}
+  .rec-out{grid-template-columns:1fr;text-align:left}
+  .row{grid-template-columns:92px 1fr;grid-template-areas:"l b" "v v"}
+  .row .rl{grid-area:l}.row .track{grid-area:b}.row .rv{grid-area:v;text-align:left}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+:focus-visible{outline:2px solid var(--olive);outline-offset:2px}
+</style>
+
+<header class="bar"><div class="wrap">
+  <div class="brandmark">Fit Signal<small>Review Field Study</small></div>
+  <div class="sp"></div>
+  <button class="tbtn" id="themeToggle" aria-label="Toggle theme">theme</button>
+</div></header>
+
+<main>
+<section id="hero"><div class="wrap">
+  <div class="eyebrow">Huckberry &middot; Jackets &middot; Oct 2026</div>
+  <h1 class="lead">The fit answer is already in your reviews. Nobody has read all of them.</h1>
+  <p class="sub">Every Huckberry jacket review quietly carries a structured fit rating and the shopper's own height, weight, and build. Pulled together, they say exactly how each jacket runs, and for whom. This is a read of that signal across three brands, built only from public review data.</p>
+  <div class="prov">
+    <span class="pill"><b>1,800+</b> reviews analyzed</span>
+    <span class="pill"><b>1,377</b> structured fit ratings</span>
+    <span class="pill"><b>3</b> brands compared</span>
+    <span class="pill">No internal data used</span>
+  </div>
+</div></section>
+
+<section id="finding"><div class="wrap">
+  <div class="eyebrow sec-k">Finding 01 &middot; The flagship</div>
+  <h2 class="sec">The waxed trucker runs small, but not evenly</h2>
+  <p>Across 1,377 reviewers who rated fit on the Flint &amp; Tinder Flannel-Lined Waxed Trucker Jacket, <span class="hl">23.3%</span> say it runs small and only <span class="hl2">1.9%</span> say it runs large. On its own that is a clean "size up" story. Broken out by build, it stops being one story.</p>
+  <div class="chart" id="chartBody" aria-label="Share who say the jacket runs small, by body type"></div>
+  <div class="callout">Heavy-set reviewers report the jacket running small <b>41%</b> of the time. Slim reviewers, <b>14%</b>. A single "runs small" flag on the product page is right for one of these shoppers and wrong for the other. The fix is guidance that knows who is asking.</div>
+</div></section>
+
+<section id="recommender"><div class="wrap">
+  <div class="eyebrow sec-k">The tool &middot; Built from 1,119 kept-size records</div>
+  <h2 class="sec">What size did people like you keep?</h2>
+  <p>Reviewers volunteer their height, weight, and the size they ended up keeping. For any build, that is a direct answer to the sizing question, drawn from people who already made the call. Pick a range to see what they kept.</p>
+  <div class="rec" id="rec">
+    <div class="rec-top">
+      <div class="field"><label for="selH">Height</label><select id="selH"></select></div>
+      <div class="field"><label for="selW">Weight</label><select id="selW"></select></div>
+    </div>
+    <div class="rec-out">
+      <div class="sizebox"><div class="sz" id="recSize">L</div><div class="szl">most kept</div></div>
+      <div class="rec-detail">
+        <div class="rd1" id="recLine">Loading...</div>
+        <div class="distbar" id="recDist"></div>
+        <div class="distkey" id="recKey"></div>
+      </div>
+    </div>
+    <div class="rec-foot" id="recFoot"></div>
+  </div>
+  <p class="note" style="margin-top:14px">Guidance only, from waxed-trucker buyers. The same engine runs on any product that collects these fields.</p>
+</div></section>
+
+<section id="crossbrand"><div class="wrap">
+  <div class="eyebrow sec-k">Finding 02 &middot; Across the rack</div>
+  <h2 class="sec">Three brands, three different kinds of "runs small"</h2>
+  <p>Huckberry sells brands it does not cut. Only the flagship collects a structured fit rating, so for Relwen and Barbour the fit read is pulled from review text by the model described below. Shown: of reviewers who comment on fit, the share who say the jacket runs small.</p>
+  <div class="chart" id="chartBrand" aria-label="Share of fit comments saying runs small, by brand"></div>
+  <div class="legend">
+    <span><i class="sw" style="background:var(--small)"></i>bar: % of fit mentions saying "runs small"</span>
+    <span><i class="sw" style="background:var(--ink);opacity:.55"></i>95% interval</span>
+  </div>
+  <p style="margin-top:20px">All three lean small, but they are not the same problem. <b>Flint &amp; Tinder</b> is nearly one-directional: almost no one calls it large. <b>Barbour</b> is contested, with real clusters of both "slim and tight" and "boxy, sleeves too long," the signature of a cut that fits some bodies and fights others. <b>Relwen</b> sits between, on a thin sample.</p>
+  <p class="note">Relwen rests on 10 directional mentions and Barbour on 23, so their intervals are wide; read them as direction, not decimals. Flint &amp; Tinder's text estimate (92% small) lands on top of its structured truth (93%), which is the point of the next section.</p>
+</div></section>
+
+<section id="validation"><div class="wrap">
+  <div class="eyebrow sec-k">The check &middot; Pressure-testing the AI</div>
+  <h2 class="sec">Why trust the text read at all</h2>
+  <p>The cross-brand numbers lean on a model reading free text. Before trusting it, I tested it where truth exists: the flagship has both the review text and a structured fit rating. I had the model read only the text, guess the fit, and scored it against the rating it never saw.</p>
+  <div class="segbar" id="segbar"></div>
+  <div class="legend">
+    <span><i class="sw" style="background:var(--true)"></i>no fit cue in text</span>
+    <span><i class="sw" style="background:var(--olive)"></i>had a cue, model right</span>
+    <span><i class="sw" style="background:var(--small)"></i>had a cue, model wrong</span>
+  </div>
+  <div class="vstats">
+    <div class="vstat"><div class="n" style="color:var(--olive)">86.9%</div><div class="l">correct when the text actually mentions fit (n=61)</div></div>
+    <div class="vstat"><div class="n" style="color:var(--true)">49%</div><div class="l">of reviews give no fit cue in the text at all</div></div>
+    <div class="vstat"><div class="n">83 <small>vs</small> 85</div><div class="l">model's net "runs small" for F&amp;T vs the structured truth</div></div>
+  </div>
+  <p style="margin-top:22px">Two things follow. Where a review talks about fit, the model is reliable, and its brand-level read of the flagship matches the ground truth almost exactly, which is what licenses using it on Relwen and Barbour. But half of reviews never mention fit even when the shopper clearly had an opinion they recorded in the structured field. Text alone misses that half. That gap is the argument for capturing fit as a field, or asking for it, rather than hoping people write it down.</p>
+</div></section>
+
+<section id="limits"><div class="wrap">
+  <div class="eyebrow sec-k">What this is and isn't</div>
+  <h2 class="sec">Honest edges</h2>
+  <ul class="clean">
+    <li>Reviews are written by people who kept the jacket. Returners, the ones who matter most for fit, are mostly absent. This reads the fit of survivors.</li>
+    <li>The brand comparison is anchored by one richly-measured flagship and two thin text samples. It is a direction to check, not a verdict to ship.</li>
+    <li>The real outcome is returns, which live in your systems, not mine. Point this at return and exchange data and the "runs small" signal becomes a dollar figure instead of an inference.</li>
+    <li>Weight and height are self-reported and lightly cleaned. "The Rock" is not an athletic build I kept.</li>
+  </ul>
+  <p>Fit is one field. The same approach reads durability complaints, color-accuracy gripes, and the words that precede a one-star, each sitting unused in the same review feed.</p>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="credit">Fit Signal</div>
+  <div>Built by Bilal Zafar from public Huckberry review data (Yotpo), October 2026. Analysis in Python; fit extraction and validation with Claude. No proprietary data used.</div>
+</div></footer>
+
+<script src="fitdata.js"></script>
+<script>
+(function(){
+  "use strict";
+  var D=window.FITDATA;
+  var root=document.documentElement;
+  // theme
+  var tb=document.getElementById('themeToggle');
+  function cur(){try{return localStorage.getItem('fs-theme')}catch(e){return null}}
+  function apply(t){ if(t)root.setAttribute('data-theme',t); else root.removeAttribute('data-theme'); }
+  apply(cur());
+  tb.addEventListener('click',function(){
+    var sysDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;
+    var now=root.getAttribute('data-theme')|| (sysDark?'dark':'light');
+    var next=now==='dark'?'light':'dark';
+    apply(next); try{localStorage.setItem('fs-theme',next)}catch(e){}
+  });
+
+  function cssv(n){return getComputedStyle(root).getPropertyValue(n).trim()}
+  function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+
+  // ---- Chart A: runs-small by body type ----
+  (function(){
+    var box=document.getElementById('chartBody');
+    var order=['Slim','Average','Athletic','Heavy Set'];
+    var max=45;
+    order.forEach(function(k){
+      var d=D.body[k]; if(!d)return;
+      var r=el('div','row');
+      r.appendChild(el('div','rl',k));
+      var tr=el('div','track');
+      var f=el('i','fill'); f.className='fill';
+      f.style.width=(d.pct_small/max*100)+'%'; f.style.background='var(--small)';
+      tr.appendChild(f); r.appendChild(tr);
+      r.appendChild(el('div','rv','<b>'+d.pct_small+'%</b> &middot; n='+d.n));
+      box.appendChild(r);
+    });
+    var sc=el('div','scale','<span>0%</span><span>say "runs small" &rarr;</span><span>'+max+'%</span>');
+    box.appendChild(sc);
+  })();
+
+  // ---- Chart B: cross-brand ----
+  (function(){
+    var box=document.getElementById('chartBrand');
+    var brands=['Flint & Tinder','Relwen','Barbour'];
+    var max=100;
+    brands.forEach(function(b){
+      var d=D.crossbrand[b]; if(!d)return;
+      var pct=d.pct_small_of_directional, ci=d.ci_small;
+      var r=el('div','row');
+      r.appendChild(el('div','rl',b.replace('Flint & Tinder','F&T')));
+      var tr=el('div','track');
+      var f=el('i','fill'); f.style.width=(pct/max*100)+'%'; f.style.background='var(--small)';
+      tr.appendChild(f);
+      if(ci){var w=el('div','whisk'); w.style.left=(ci[0]/max*100)+'%'; w.style.width=((ci[1]-ci[0])/max*100)+'%'; tr.appendChild(w);}
+      r.appendChild(tr);
+      var extra=d.structured_pct_small_of_dir?(' &middot; <span style="color:var(--olive)">truth '+d.structured_pct_small_of_dir+'%</span>'):'';
+      r.appendChild(el('div','rv','<b>'+pct+'%</b> &middot; n='+d.directional+extra));
+      box.appendChild(r);
+    });
+    box.appendChild(el('div','scale','<span>0%</span><span>share of fit mentions &middot; "runs small"</span><span>100%</span>'));
+  })();
+
+  // ---- Validation segmented bar ----
+  (function(){
+    var v=D.validation, N=v.n;
+    var abstain=v.n_abstain, correct=Math.round(v.n_signal*v.acc_signal), wrong=v.n_signal-correct;
+    var box=document.getElementById('segbar');
+    function seg(count,color,label){var i=el('i',null,label); i.style.width=(count/N*100)+'%'; i.style.background=color; return i;}
+    box.appendChild(seg(abstain,'var(--true)',abstain));
+    box.appendChild(seg(correct,'var(--olive)',correct));
+    box.appendChild(seg(wrong,'var(--small)',wrong));
+  })();
+
+  // ---- Recommender ----
+  (function(){
+    var R=D.rec, selH=document.getElementById('selH'), selW=document.getElementById('selW');
+    R.hbands.forEach(function(h){var o=el('option',null,R.hlab[h]); o.value=h; selH.appendChild(o);});
+    R.wbands.forEach(function(w){var o=el('option',null,R.wlab[w]); o.value=w; selW.appendChild(o);});
+    var ORDER=['XS','S','M','L','XL','XXL','3XL'];
+    var COL={XS:'#9fb0c4',S:'#86a1b8',M:'var(--true)',L:'var(--olive)',XL:'var(--small)',XXL:'#95552a','3XL':'#6f3f20'};
+    var sizeEl=document.getElementById('recSize'), lineEl=document.getElementById('recLine'),
+        distEl=document.getElementById('recDist'), keyEl=document.getElementById('recKey'), footEl=document.getElementById('recFoot');
+    function render(){
+      var key=selH.value+'|'+selW.value, c=R.cells[key];
+      distEl.innerHTML=''; keyEl.innerHTML='';
+      if(!c){
+        sizeEl.textContent='—'; sizeEl.style.color='var(--muted)';
+        lineEl.innerHTML='Too few reviewers in this exact range to call. Try a nearby band.';
+        footEl.textContent='no reliable sample for this cell';
+        return;
+      }
+      sizeEl.textContent=c.modal; sizeEl.style.color='var(--olive)';
+      var pct=Math.round(c.conf*100);
+      lineEl.innerHTML='<b>'+pct+'%</b> of reviewers this size and build kept the <b>'+c.modal+'</b>. Based on <b>'+c.n+'</b> who told us what they kept.';
+      var total=0; ORDER.forEach(function(s){if(c.dist[s])total+=c.dist[s];});
+      ORDER.forEach(function(s){
+        if(!c.dist[s])return;
+        var i=el('i'); i.style.width=(c.dist[s]/total*100)+'%'; i.style.background=COL[s]||'var(--muted)';
+        i.title=s+': '+c.dist[s]; distEl.appendChild(i);
+        var k=el('span',null,'<i style="background:'+(COL[s]||'var(--muted)')+'"></i>'+s+' '+c.dist[s]); keyEl.appendChild(k);
+      });
+      footEl.innerHTML='example range shown &middot; '+R.hlab[selH.value]+' / '+R.wlab[selW.value];
+    }
+    // sensible default example with a solid sample
+    selH.value='5ft11-6ft0'; selW.value='180-199';
+    if(!R.cells[selH.value+'|'+selW.value]){ selH.value=R.hbands[2]; selW.value=R.wbands[3]; }
+    selH.addEventListener('change',render); selW.addEventListener('change',render);
+    render();
+  })();
+})();
+</script>

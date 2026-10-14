@@ -1,0 +1,3 @@
+# Standard library covers fetch_reviews.py and pipeline.py.
+# Optional, only to re-run the text classification step:
+anthropic>=0.39,<1.0
