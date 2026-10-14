@@ -176,10 +176,10 @@ footer .wrap{display:flex;flex-direction:column;gap:6px}
 
 <section id="finding"><div class="wrap">
   <div class="eyebrow sec-k">Finding 01 &middot; The flagship</div>
-  <h2 class="sec">The waxed trucker runs small, but not evenly</h2>
-  <p>Across 1,377 reviewers who rated fit on the Flint &amp; Tinder Flannel-Lined Waxed Trucker Jacket, <span class="hl">23.3%</span> say it runs small and only <span class="hl2">1.9%</span> say it runs large. On its own that is a clean "size up" story. Broken out by build, it stops being one story.</p>
-  <div class="chart" id="chartBody" aria-label="Share who say the jacket runs small, by body type"></div>
-  <div class="callout">Heavy-set reviewers report the jacket running small <b>41%</b> of the time. Slim reviewers, <b>14%</b>. A single "runs small" flag on the product page is right for one of these shoppers and wrong for the other. The fix is guidance that knows who is asking.</div>
+  <h2 class="sec">The waxed trucker runs small, and worse the bigger you are</h2>
+  <p>Across 1,377 reviewers who rated fit on the Flint &amp; Tinder Flannel-Lined Waxed Trucker Jacket, <span class="hl">23.3%</span> say it runs small and only <span class="hl2">1.9%</span> say it runs large. That one average hides a steep gradient: the jacket fits through the middle of its range and gives out at the top.</p>
+  <div class="chart" id="chartWeight" aria-label="Share who say the jacket runs small, by weight"></div>
+  <div class="callout">A reviewer under 180 lb calls it small <b>15%</b> of the time; past 240 lb, <b>51%</b>. That is a size-chart problem at the upper end, invisible in the 4.7-star average. Build adds a little on top: at the same weight (200&ndash;279 lb), heavier-build reviewers still report it small <b>44%</b> vs <b>29%</b> for athletic or average builds. Most of the story is size, not shape.</div>
 </div></section>
 
 <section id="recommender"><div class="wrap">
@@ -274,24 +274,21 @@ footer .wrap{display:flex;flex-direction:column;gap:6px}
   function cssv(n){return getComputedStyle(root).getPropertyValue(n).trim()}
   function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
 
-  // ---- Chart A: runs-small by body type ----
+  // ---- Chart A: runs-small by weight ----
   (function(){
-    var box=document.getElementById('chartBody');
-    var order=['Slim','Average','Athletic','Heavy Set'];
-    var max=45;
-    order.forEach(function(k){
-      var d=D.body[k]; if(!d)return;
+    var box=document.getElementById('chartWeight');
+    var LAB={'<180':'under 180','180-199':'180–199','200-219':'200–219','220-239':'220–239','240+':'240 and up'};
+    var max=55;
+    (D.weight_gradient||[]).forEach(function(d){
       var r=el('div','row');
-      r.appendChild(el('div','rl',k));
+      r.appendChild(el('div','rl',(LAB[d.band]||d.band)+' lb'));
       var tr=el('div','track');
-      var f=el('i','fill'); f.className='fill';
-      f.style.width=(d.pct_small/max*100)+'%'; f.style.background='var(--small)';
+      var f=el('i','fill'); f.style.width=(d.pct/max*100)+'%'; f.style.background='var(--small)';
       tr.appendChild(f); r.appendChild(tr);
-      r.appendChild(el('div','rv','<b>'+d.pct_small+'%</b> &middot; n='+d.n));
+      r.appendChild(el('div','rv','<b>'+d.pct+'%</b> &middot; n='+d.n));
       box.appendChild(r);
     });
-    var sc=el('div','scale','<span>0%</span><span>say "runs small" &rarr;</span><span>'+max+'%</span>');
-    box.appendChild(sc);
+    box.appendChild(el('div','scale','<span>0%</span><span>say "runs small" by shopper weight &rarr;</span><span>'+max+'%</span>'));
   })();
 
   // ---- Chart B: cross-brand ----

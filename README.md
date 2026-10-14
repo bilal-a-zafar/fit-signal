@@ -18,8 +18,12 @@ Three things, built on Flint & Tinder, Relwen, and Barbour jackets:
 
 1. **Fit calibration.** The flagship Flint & Tinder waxed trucker runs small
    (net +21pp, 95% CI 19–24, n=1,377 structured fit ratings). The useful part is
-   that it's uneven by build: heavy-set reviewers call it small 41% of the time,
-   slim reviewers 14%. A single "runs small" flag is too blunt.
+   that it worsens steeply with size: 15% of reviewers under 180 lb call it small,
+   rising to 51% past 240. That is a size-chart problem at the top of the range.
+   Build adds a little on top of weight, but most of the effect is size, not shape:
+   at the same weight (200–279 lb) heavier-build reviewers report it small 44% vs
+   29% for athletic/average, so a raw by-body-type split overstates a pure build
+   effect. A single "runs small" flag is too blunt either way.
 
 2. **A size recommender.** Reviewers volunteer height, weight, and the size they
    kept. For any build, that's a direct answer to the sizing question from people

@@ -129,7 +129,26 @@ def flagship_analysis():
                     with_weight=sum(1 for x in clean if x["w"]),
                     with_size=sum(1 for x in clean if x["size"]),
                     with_hw_size=len(pts))
-    return calib, by_bt, size_grid, coverage
+
+    # weight gradient (pooled across builds) — the robust, size-ceiling finding
+    def wgband(w):
+        return ("<180" if w < 180 else "180-199" if w < 200 else "200-219"
+                if w < 220 else "220-239" if w < 240 else "240+")
+    wg = defaultdict(list)
+    for x in clean:
+        if x["w"] and x["fit"] in (1, 2, 3):
+            wg[wgband(x["w"])].append(1 if x["fit"] == 1 else 0)
+    weight_gradient = [dict(band=b, pct=round(100 * sum(wg[b]) / len(wg[b])), n=len(wg[b]))
+                       for b in ["<180", "180-199", "200-219", "220-239", "240+"] if wg[b]]
+
+    # build effect, controlled for weight (overlap 200–279 lb): is it build or just size?
+    def srate(bts):
+        v = [1 if x["fit"] == 1 else 0 for x in clean
+             if x["bt"] in bts and x["fit"] in (1, 2, 3) and x["w"] and 200 <= x["w"] <= 279]
+        return dict(pct=round(100 * sum(v) / len(v)), n=len(v)) if v else dict(pct=None, n=0)
+    build_controlled = dict(range="200–279 lb", heavy=srate({"Heavy Set"}),
+                            others=srate({"Athletic", "Average"}))
+    return calib, by_bt, size_grid, coverage, weight_gradient, build_controlled
 
 
 # ---------- validation + cross-brand (from recorded LLM labels) ----------
@@ -185,20 +204,24 @@ def validate_and_crossbrand(calib):
 
 
 def main():
-    calib, by_bt, size_grid, coverage = flagship_analysis()
+    calib, by_bt, size_grid, coverage, weight_gradient, build_controlled = flagship_analysis()
     validation, cb = validate_and_crossbrand(calib)
     final = dict(
         meta=dict(category="Jackets", brands=list(cb), pulled_at="2026-10-13",
                   flagship="Flint & Tinder Flannel-Lined Waxed Trucker Jacket"),
         flagship=dict(calibration=calib, by_body_type=by_bt, coverage=coverage,
-                      size_grid=size_grid),
+                      size_grid=size_grid, weight_gradient=weight_gradient,
+                      build_controlled=build_controlled),
         crossbrand=cb, validation=validation)
     json.dump(final, open(f"{DATA}/results_final.json", "w"), indent=2)
     print("wrote data/results_final.json")
     print(f"  flagship net runs-small: {calib['net_runs_small']}% "
           f"(CI {calib['net_ci95']}, n={calib['n']})")
-    print(f"  heavy-set {by_bt['Heavy Set']['pct_small']}% small vs "
-          f"slim {by_bt['Slim']['pct_small']}%")
+    print("  runs-small by weight: " +
+          ", ".join(f"{g['band']} {g['pct']}%" for g in weight_gradient))
+    print(f"  build (weight-controlled {build_controlled['range']}): "
+          f"heavy {build_controlled['heavy']['pct']}% vs "
+          f"others {build_controlled['others']['pct']}%")
     print(f"  validation: {int(validation['acc_signal']*100)}% accurate where text "
           f"mentions fit; {int(validation['abstain_rate']*100)}% of reviews give no cue")
     for b, v in cb.items():

@@ -1,0 +1,41 @@
+{
+  "flint_and_tinder_text": {
+    "n": 120,
+    "small": 22,
+    "large": 2,
+    "true": 37,
+    "none": 59,
+    "signal": 24,
+    "pct_small_of_signal": 91.7,
+    "pct_large_of_signal": 8.3,
+    "net_runs_small_of_signal": 83.3
+  },
+  "relwen_text": {
+    "n": 100,
+    "small": 7,
+    "large": 3,
+    "true": 39,
+    "none": 51,
+    "signal": 10,
+    "pct_small_of_signal": 70.0,
+    "pct_large_of_signal": 30.0,
+    "net_runs_small_of_signal": 40.0
+  },
+  "barbour_text": {
+    "n": 95,
+    "small": 14,
+    "large": 9,
+    "true": 25,
+    "none": 47,
+    "signal": 23,
+    "pct_small_of_signal": 60.9,
+    "pct_large_of_signal": 39.1,
+    "net_runs_small_of_signal": 21.7
+  },
+  "flint_and_tinder_structured": {
+    "n": 1377,
+    "net_runs_small": 21.4,
+    "pct_small": 23.3,
+    "pct_large": 1.9
+  }
+}

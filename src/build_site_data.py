@@ -26,6 +26,8 @@ cells = {v["h"] + "|" + v["w"]: {"modal": v["modal"], "n": v["n"],
 
 data = {"meta": r["meta"], "calib": r["flagship"]["calibration"],
         "coverage": r["flagship"]["coverage"], "body": r["flagship"]["by_body_type"],
+        "weight_gradient": r["flagship"]["weight_gradient"],
+        "build_controlled": r["flagship"]["build_controlled"],
         "validation": r["validation"], "crossbrand": r["crossbrand"],
         "rec": {"hbands": HB, "hlab": HLAB, "wbands": WB,
                 "wlab": {w: wlab(w) for w in WB}, "cells": cells}}
